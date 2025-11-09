@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,20 +23,12 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      # Build & test (this will also run MainTest, which calls Main.main() and writes index.html)
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean test
 
-      - name: Run tests
-        run: mvn test
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    if: success()
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Ensure site directory exists
+        run: mkdir -p target/site
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
