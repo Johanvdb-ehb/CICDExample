@@ -25,14 +25,11 @@ jobs:
       - name: Build & test
         run: mvn -B clean test
 
-
       - name: Generate site (index.html)
         run: mvn -B -DskipTests exec:java
 
       - name: Debug: list site output
-        run: |
-          echo "Contents of target/site:"
-          ls -la target/site
+        run: echo "Contents of target/site:" && ls -la target/site
 
       - name: Upload site artifact
         uses: actions/upload-artifact@v4
