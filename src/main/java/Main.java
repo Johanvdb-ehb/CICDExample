@@ -7,7 +7,7 @@ public class Main {
 
 		System.out.println("Hello, GitHub Actions with CI/CD and Pages!");
 
-		String message = "Hello, GitHub Actions with CI/CD and Pages!";
+		String message = "Hello, GitHub Actions! with CI/CD and Pages!";
 		System.out.println(message);
 
 		File dir = new File("target/site");
